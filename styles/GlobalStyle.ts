@@ -7,8 +7,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     font-family: "Noto Sans KR";
+    background-color: #2d3436;
   }
   button {
     border: none;

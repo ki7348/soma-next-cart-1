@@ -2,7 +2,6 @@ import { fetchCoins } from "../apis";
 import styled from "styled-components";
 import { CoinData } from "../types/Coin";
 import CoinItem from "../components/CoinItem";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 
 const Header = styled.header`
   height: 10vh;
@@ -14,12 +13,16 @@ const Title = styled.h1`
   position: relative;
   left: -10px;
   padding-left: 10px;
+  color: rgb(85, 239, 196);
 `;
 
-const CoinBody = styled.div``;
+const CoinBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ theme }) => theme.mixin.flexCenter()};
+`;
 
 const HomePage = ({ coinData }: { coinData: CoinData[] }) => {
-  console.log(coinData);
   return (
     <>
       <Header>

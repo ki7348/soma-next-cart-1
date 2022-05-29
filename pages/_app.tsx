@@ -4,6 +4,10 @@ import GlobalStyle from "../styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import * as mixin from "../styles/mixin";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 const queryClient = new QueryClient();
 const theme = { mixin };
 

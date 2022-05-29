@@ -1,30 +1,53 @@
+import { faCoins, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import { CoinData } from "../types/Coin";
 
-const Container = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
   background-color: rgb(245, 246, 250);
   color: rgb(45, 52, 54);
   margin-bottom: 10px;
   border-radius: 8px;
+  width: 480px;
+  height: 50px;
+  padding: 10px;
+  &:hover {
+    p {
+      transition: color 0.3s ease-in;
+      color: red;
+    }
+  }
 `;
 
-const Wrapper = styled.span``;
+const TitleWrapper = styled.span`
+  display: flex;
+  align-items: center;
+`;
 
-const CoinImage = styled.img`
-  width: 30px;
-  height: 30px;
+const CoinImage = styled(FontAwesomeIcon)`
+  color: #fbcb0a;
   margin-right: 10px;
 `;
 
-const CoinName = styled.p``;
+const CoinName = styled.p`
+  font-size: 18px;
+`;
 
-const CoinItem = (props: any) => {
+const CoinHeart = styled(FontAwesomeIcon)``;
+
+const CoinItem = (props: Partial<CoinData>) => {
   return (
-    <Container>
-      <Wrapper>
-        <CoinImage />
+    <Wrapper>
+      <TitleWrapper>
+        <CoinImage icon={faCoins} />
         <CoinName>{props.name}</CoinName>
-      </Wrapper>
-    </Container>
+      </TitleWrapper>
+      <CoinHeart icon={faHeart} />
+    </Wrapper>
   );
 };
 
