@@ -1,7 +1,8 @@
 import { faCoins, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import styled from "styled-components";
-import { CoinData } from "../types/Coin";
+import { ICoinData } from "../../types/Coin";
 
 const Wrapper = styled.div`
   display: flex;
@@ -39,15 +40,17 @@ const CoinName = styled.p`
 
 const CoinHeart = styled(FontAwesomeIcon)``;
 
-const CoinItem = (props: Partial<CoinData>) => {
+const CoinItem = (props: Partial<ICoinData>) => {
   return (
-    <Wrapper>
-      <TitleWrapper>
-        <CoinImage icon={faCoins} />
-        <CoinName>{props.name}</CoinName>
-      </TitleWrapper>
-      <CoinHeart icon={faHeart} />
-    </Wrapper>
+    <Link href={`/${props.id}`}>
+      <Wrapper>
+        <TitleWrapper>
+          <CoinImage icon={faCoins} />
+          <CoinName>{props.name}</CoinName>
+        </TitleWrapper>
+        <CoinHeart icon={faHeart} />
+      </Wrapper>
+    </Link>
   );
 };
 

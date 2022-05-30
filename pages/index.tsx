@@ -1,7 +1,13 @@
 import { fetchCoins } from "../apis";
 import styled from "styled-components";
-import { CoinData } from "../types/Coin";
-import CoinItem from "../components/CoinItem";
+import { ICoinData } from "../types/Coin";
+import { NextPage } from "next";
+import CoinItem from "../components/Coin/CoinItem";
+
+const Container = styled.div`
+  margin: auto;
+  max-width: 480px;
+`;
 
 const Header = styled.header`
   height: 10vh;
@@ -9,11 +15,7 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
-  font-size: 2em;
-  position: relative;
-  left: -10px;
-  padding-left: 10px;
-  color: rgb(85, 239, 196);
+  ${({ theme }) => theme.mixin.titleStyle()};
 `;
 
 const CoinBody = styled.div`
@@ -22,29 +24,29 @@ const CoinBody = styled.div`
   ${({ theme }) => theme.mixin.flexCenter()};
 `;
 
-const HomePage = ({ coinData }: { coinData: CoinData[] }) => {
+const HomePage: NextPage<{ coinData: ICoinData[] }> = ({ coinData }) => {
   return (
-    <>
+    <Container>
       <Header>
         <Title>Coin Tracker</Title>
       </Header>
       <CoinBody>
-        {coinData.map((coin: CoinData) => (
-          <CoinItem key={coin.id} name={coin.name} />
+        {coinData.map((coin: ICoinData) => (
+          <CoinItem key={coin.id} id={coin.id} name={coin.name} />
         ))}
       </CoinBody>
-    </>
+    </Container>
   );
 };
 
 export const getStaticProps = async () => {
-  const originCoinData: CoinData[] = await fetchCoins();
+  const originCoinData: ICoinData[] = await fetchCoins();
 
   if (!originCoinData) {
     return { notfound: true };
   }
 
-  const coinData: CoinData[] = originCoinData.slice(0, 50);
+  const coinData: ICoinData[] = originCoinData.slice(0, 50);
 
   return {
     props: {

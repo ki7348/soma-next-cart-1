@@ -17,6 +17,14 @@ const flexCenter = () => css`
   align-items: center;
 `;
 
+const titleStyle = () => css`
+  font-size: 2em;
+  position: relative;
+  left: -10px;
+  margin-left: 10px;
+  color: rgb(85, 239, 196);
+`;
+
 const scrollStyle = (
   scrollbarWidth: number,
   scrollbarHeight: number,
@@ -46,4 +54,4 @@ const scrollStyle = (
   `;
 };
 
-export { fontSize, setTextEllipsis, flexCenter, scrollStyle };
+export { fontSize, setTextEllipsis, titleStyle, flexCenter, scrollStyle };
