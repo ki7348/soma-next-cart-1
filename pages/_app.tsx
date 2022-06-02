@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import GlobalStyle from "../styles/GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import * as mixin from "../styles/mixin";
+import color from "../styles/color";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -10,7 +11,7 @@ import { RecoilRoot } from "recoil";
 config.autoAddCss = false;
 
 const queryClient = new QueryClient();
-const theme = { mixin };
+const theme = { color, mixin };
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

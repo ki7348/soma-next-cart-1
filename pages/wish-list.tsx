@@ -36,9 +36,3 @@ const wishList = () => {
 };
 
 export default wishList;
-
-/*
-{coinData.map((coin: ICoinData) => (
-  <CoinItem key={coin.id} id={coin.id} name={coin.name} />
-))}
-*/

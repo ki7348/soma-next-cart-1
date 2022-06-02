@@ -17,8 +17,7 @@ const TitleWrapper = styled.div`
   display: flex;
   position: relative;
   cursor: pointer;
-  background-color: rgb(245, 246, 250);
-  color: rgb(45, 52, 54);
+  background-color: ${({ theme }) => theme.color.light};
   margin: 5px 10px 5px 0px;
   border-radius: 8px;
   width: 440px;
@@ -27,7 +26,7 @@ const TitleWrapper = styled.div`
   &:hover {
     p {
       transition: color 0.3s ease-in;
-      color: red;
+      color: ${({ theme }) => theme.color.main};
     }
   }
   display: flex;
@@ -35,7 +34,7 @@ const TitleWrapper = styled.div`
 `;
 
 const CoinImage = styled(FontAwesomeIcon)`
-  color: #fbcb0a;
+  color: ${({ theme }) => theme.color.yellow};
   margin-right: 10px;
 `;
 
@@ -45,7 +44,8 @@ const CoinName = styled.p`
 
 const CoinHeart = styled(FontAwesomeIcon)<{ selected: boolean }>`
   cursor: pointer;
-  color: ${(props) => (props.selected ? "#FF5D5D" : "#ffffff")};
+  color: ${(props) =>
+    props.selected ? props.theme.color.red : props.theme.color.light};
 `;
 
 const CoinItem = (props: ICoinData) => {

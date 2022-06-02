@@ -25,7 +25,7 @@ const Title = styled.h1`
 `;
 
 const HomeImage = styled(FontAwesomeIcon)`
-  color: #ffffff;
+  color: ${({ theme }) => theme.color.light};
   cursor: pointer;
   margin-right: 10px;
 `;
@@ -33,7 +33,7 @@ const HomeImage = styled(FontAwesomeIcon)`
 const DetailWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme.color.dark};
   padding: 10px 20px;
   height: 51px;
   border-radius: 10px;

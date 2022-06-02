@@ -6,7 +6,7 @@ import CoinItem from "../components/Coin/CoinItem";
 import Link from "next/link";
 import Button from "../components/UI/Button";
 
-const Container = styled.div`
+const Wrapper = styled.div`
   margin: auto;
   max-width: 480px;
 `;
@@ -27,12 +27,12 @@ const CoinBody = styled.div`
 `;
 
 const WishListLink = styled.a`
-  ${({ theme }) => theme.mixin.fontSize(16, "rgb(85, 239, 196)")};
+  ${({ theme }) => theme.mixin.fontSize(16, theme.color.main)};
 `;
 
 const HomePage: NextPage<{ coinData: ICoinData[] }> = ({ coinData }) => {
   return (
-    <Container>
+    <Wrapper>
       <Header>
         <Title>Coin Tracker</Title>
       </Header>
@@ -46,7 +46,7 @@ const HomePage: NextPage<{ coinData: ICoinData[] }> = ({ coinData }) => {
           <CoinItem key={coin.id} id={coin.id} name={coin.name} />
         ))}
       </CoinBody>
-    </Container>
+    </Wrapper>
   );
 };
 

@@ -26,11 +26,6 @@ const titleStyle = () => css`
   color: rgb(85, 239, 196);
 `;
 
-const buttonTextStyle = () => css`
-  color: #ffffff;
-  font-size: 12px;
-`;
-
 const scrollStyle = (
   scrollbarWidth: number,
   scrollbarHeight: number,
