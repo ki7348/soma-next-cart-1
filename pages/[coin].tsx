@@ -6,6 +6,8 @@ import { ICoinData, ICoinInfo, ITickers } from "../types/Coin";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Button from "../components/UI/Button";
+import { useState } from "react";
+import CoinDetailMenu from "../components/Coin/CoinDetailMenu";
 
 const Container = styled.div`
   margin: auto;
@@ -57,17 +59,24 @@ const Description = styled.p`
 const ButtonWrapper = styled.span`
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
+  margin: 25px 0px;
 `;
 
 const ButtonText = styled.p`
   ${({ theme }) => theme.mixin.fontSize(12)};
 `;
 
+const HiddenDetailWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+`;
+
 const CoinDetailPage: NextPage<{
   coinInfo: ICoinInfo;
   coinTickers: ITickers;
 }> = ({ coinInfo, coinTickers }) => {
+  const [selectedMenu, setSelectedMenu] = useState<string>("");
   return (
     <Container>
       <Header>
@@ -107,6 +116,7 @@ const CoinDetailPage: NextPage<{
       </DetailWrapper>
       <ButtonWrapper>
         <Button
+          onClick={() => setSelectedMenu("PRICE")}
           radius="10px"
           backgroundColor="rgba(0, 0, 0, 0.2)"
           height="26px"
@@ -115,6 +125,7 @@ const CoinDetailPage: NextPage<{
           <ButtonText>PRICE</ButtonText>
         </Button>
         <Button
+          onClick={() => setSelectedMenu("CHART")}
           radius="10px"
           backgroundColor="rgba(0, 0, 0, 0.2)"
           height="26px"
@@ -123,6 +134,26 @@ const CoinDetailPage: NextPage<{
           <ButtonText>CHART</ButtonText>
         </Button>
       </ButtonWrapper>
+      {selectedMenu === "PRICE" && (
+        <HiddenDetailWrapper>
+          <CoinDetailMenu
+            title={"Market capitalization"}
+            content={coinTickers.quotes.USD.market_cap.toLocaleString("ko-KR")}
+          />
+          <CoinDetailMenu
+            title={"All Time High"}
+            content={coinTickers.quotes.USD.ath_price.toFixed(3)}
+          />
+          <CoinDetailMenu
+            title={"All Time High date"}
+            content={coinTickers.quotes.USD.ath_date.split("T")[0]}
+          />
+          <CoinDetailMenu
+            title={"Change rate (last 24h)"}
+            content={coinTickers.quotes.USD.percent_change_24h}
+          />
+        </HiddenDetailWrapper>
+      )}
     </Container>
   );
 };

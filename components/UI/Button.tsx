@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type ButtonProps = {
+type ButtonPropsType = {
   backgroundColor: string;
   children: React.ReactNode;
   height: string;
@@ -9,7 +9,7 @@ type ButtonProps = {
   width: string;
 };
 
-const Button = styled.button<ButtonProps>`
+const Button = styled.button<ButtonPropsType>`
   ${({ theme }) => theme.mixin.flexCenter()};
   background-color: ${(props) => props.backgroundColor};
   border-radius: ${(props) => props.radius};
@@ -20,7 +20,7 @@ const Button = styled.button<ButtonProps>`
   }
 `;
 
-const ButtonView = (props: ButtonProps) => {
+const ButtonView = (props: ButtonPropsType) => {
   const { onClick, backgroundColor, radius, height, width, children } = props;
   return (
     <Button
