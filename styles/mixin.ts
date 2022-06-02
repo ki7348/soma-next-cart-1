@@ -1,8 +1,9 @@
 import { css } from "styled-components";
 
-const fontSize = (size: number = 10) => css`
+const fontSize = (size: number = 10, color: string = "#ffffff") => css`
   font-family: "Noto Sans KR", sans-serif;
   font-size: ${size}px;
+  color: ${color};
 `;
 
 const setTextEllipsis = () => css`
@@ -23,6 +24,11 @@ const titleStyle = () => css`
   left: -10px;
   margin-left: 10px;
   color: rgb(85, 239, 196);
+`;
+
+const buttonTextStyle = () => css`
+  color: #ffffff;
+  font-size: 12px;
 `;
 
 const scrollStyle = (

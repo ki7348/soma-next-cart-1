@@ -5,6 +5,7 @@ import { fetchInfo, fetchCoins, fetchTickers } from "../apis";
 import { ICoinData, ICoinInfo, ITickers } from "../types/Coin";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import Button from "../components/UI/Button";
 
 const Container = styled.div`
   margin: auto;
@@ -42,17 +43,25 @@ const DetailStyle = styled.span`
 
 const DetailTitle = styled.p`
   ${({ theme }) => theme.mixin.fontSize(10)};
-  color: #ffffff;
 `;
 
 const DetailContent = styled.p`
   ${({ theme }) => theme.mixin.fontSize(16)};
-  color: #ffffff;
 `;
 
 const Description = styled.p`
-  color: #ffffff;
+  ${({ theme }) => theme.mixin.fontSize(16)};
   margin: 20px 0px;
+`;
+
+const ButtonWrapper = styled.span`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+`;
+
+const ButtonText = styled.p`
+  ${({ theme }) => theme.mixin.fontSize(12)};
 `;
 
 const CoinDetailPage: NextPage<{
@@ -96,6 +105,24 @@ const CoinDetailPage: NextPage<{
           <DetailContent>{coinTickers.max_supply}</DetailContent>
         </DetailStyle>
       </DetailWrapper>
+      <ButtonWrapper>
+        <Button
+          radius="10px"
+          backgroundColor="rgba(0, 0, 0, 0.2)"
+          height="26px"
+          width="235px"
+        >
+          <ButtonText>PRICE</ButtonText>
+        </Button>
+        <Button
+          radius="10px"
+          backgroundColor="rgba(0, 0, 0, 0.2)"
+          height="26px"
+          width="235px"
+        >
+          <ButtonText>CHART</ButtonText>
+        </Button>
+      </ButtonWrapper>
     </Container>
   );
 };
