@@ -1,11 +1,11 @@
 export interface ICoinData {
   id: string;
-  is_active: boolean;
-  is_new: boolean;
+  is_active?: boolean;
+  is_new?: boolean;
   name: string;
-  rank: number;
-  symbol: string;
-  type: string;
+  rank?: number;
+  symbol?: string;
+  type?: string;
 }
 
 export interface ICoinInfo {
@@ -61,4 +61,15 @@ export interface ITickers {
       volume_24h_change_24h: number;
     };
   };
+}
+
+export interface IHistorical {
+  time_open: string;
+  time_close: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
+  market_cap: number;
 }

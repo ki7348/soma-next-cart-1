@@ -8,6 +8,7 @@ import Link from "next/link";
 import Button from "../components/UI/Button";
 import { useState } from "react";
 import CoinDetailMenu from "../components/Coin/CoinDetailMenu";
+import CoinChart from "../components/Coin/CoinChart";
 
 const Container = styled.div`
   margin: auto;
@@ -154,6 +155,7 @@ const CoinDetailPage: NextPage<{
           />
         </HiddenDetailWrapper>
       )}
+      {selectedMenu === "CHART" && <CoinChart coinId={coinInfo.id} />}
     </Container>
   );
 };

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { ICoinData } from "../types/Coin";
 import { NextPage } from "next";
 import CoinItem from "../components/Coin/CoinItem";
+import Link from "next/link";
+import Button from "../components/UI/Button";
 
 const Container = styled.div`
   margin: auto;
@@ -24,12 +26,21 @@ const CoinBody = styled.div`
   ${({ theme }) => theme.mixin.flexCenter()};
 `;
 
+const WishListLink = styled.a`
+  ${({ theme }) => theme.mixin.fontSize(16, "rgb(85, 239, 196)")};
+`;
+
 const HomePage: NextPage<{ coinData: ICoinData[] }> = ({ coinData }) => {
   return (
     <Container>
       <Header>
         <Title>Coin Tracker</Title>
       </Header>
+      <Button backgroundColor="#2d3436" height="30px" width="fit-content">
+        <Link href="/wish-list">
+          <WishListLink>찜 목록</WishListLink>
+        </Link>
+      </Button>
       <CoinBody>
         {coinData.map((coin: ICoinData) => (
           <CoinItem key={coin.id} id={coin.id} name={coin.name} />

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 type ButtonPropsType = {
-  backgroundColor: string;
+  backgroundColor?: string;
   children: React.ReactNode;
   height: string;
   onClick?: () => void;
-  radius: string;
-  width: string;
+  radius?: string;
+  width?: string;
 };
 
 const Button = styled.button<ButtonPropsType>`

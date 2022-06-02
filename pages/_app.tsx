@@ -6,6 +6,7 @@ import * as mixin from "../styles/mixin";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { RecoilRoot } from "recoil";
 config.autoAddCss = false;
 
 const queryClient = new QueryClient();
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
+          <RecoilRoot>
+            <Component {...pageProps} />
+          </RecoilRoot>
         </QueryClientProvider>
       </ThemeProvider>
     </>
