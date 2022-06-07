@@ -1,0 +1,1 @@
+export { fetchPhotoListByPage } from "./fetchPhotoList";
