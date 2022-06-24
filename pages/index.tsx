@@ -57,7 +57,7 @@ export const getStaticProps = async () => {
     return { notfound: true };
   }
 
-  const coinData: ICoinData[] = originCoinData.slice(0, 50);
+  const coinData = originCoinData.slice(0, 50);
 
   return {
     props: {

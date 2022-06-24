@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type CoinDetailMenuPropsType = {
   title: string;
-  content: string | number;
+  content?: string | number;
 };
 
 const Wrapper = styled.div`

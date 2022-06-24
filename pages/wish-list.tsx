@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import CoinItem from "../components/Coin/CoinItem";
@@ -15,7 +16,7 @@ const Title = styled.h1`
   ${({ theme }) => theme.mixin.flexCenter()};
 `;
 
-const wishList = () => {
+const WishList: NextPage = () => {
   const wishList = useRecoilValue(wishListState);
 
   if (wishList.length === 0) {
@@ -35,4 +36,4 @@ const wishList = () => {
   );
 };
 
-export default wishList;
+export default WishList;
