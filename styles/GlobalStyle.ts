@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
+  input:focus {
+    outline: none;
+  }
 `;
 
 export default GlobalStyle;

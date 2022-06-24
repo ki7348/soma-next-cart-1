@@ -1,7 +1,8 @@
 import { atom } from "recoil";
-import { IWishList } from "../types/WishList";
+import { IWishList } from "../types/Wish";
+import { recoilKey } from "./constants";
 
 export const wishListState = atom<IWishList[]>({
-  key: "wishListState",
+  key: recoilKey.wishListState,
   default: [],
 });

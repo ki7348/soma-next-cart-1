@@ -7,6 +7,47 @@ import styled from "styled-components";
 import { wishListState } from "../../stores/wish";
 import { ICoinData } from "../../types/Coin";
 
+const CoinItem = (props: ICoinData) => {
+  const { id, name } = props;
+  const [isSelected, setIsSelected] = useState(false);
+  const [wishList, setWishList] = useRecoilState(wishListState);
+
+  useEffect(() => {
+    if (wishList.find((element) => id === element.id)) {
+      setIsSelected(true);
+    }
+  }, [id, wishList]);
+
+  const handleWishList = (id: string, name: string) => {
+    const index = wishList.findIndex((element) => id === element.id);
+    if (index !== -1) {
+      setWishList([...wishList.slice(0, index), ...wishList.slice(index + 1)]);
+      setIsSelected(false);
+    } else {
+      setWishList((prevList) => [...prevList, { id, name }]);
+      setIsSelected(true);
+    }
+  };
+
+  return (
+    <Wrapper>
+      <Link href={`/${props.id}`}>
+        <TitleWrapper>
+          <CoinImage icon={faCoins} />
+          <CoinName>{name}</CoinName>
+        </TitleWrapper>
+      </Link>
+      <CoinHeart
+        icon={faHeart}
+        selected={isSelected}
+        onClick={() => handleWishList(id, name)}
+      />
+    </Wrapper>
+  );
+};
+
+export default CoinItem;
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -47,44 +88,3 @@ const CoinHeart = styled(FontAwesomeIcon)<{ selected: boolean }>`
   color: ${(props) =>
     props.selected ? props.theme.color.red : props.theme.color.light};
 `;
-
-const CoinItem = (props: ICoinData) => {
-  const { id, name } = props;
-  const [isSelected, setIsSelected] = useState(false);
-  const [wishList, setWishList] = useRecoilState(wishListState);
-
-  useEffect(() => {
-    if (wishList.find((element) => id === element.id)) {
-      setIsSelected(true);
-    }
-  }, []);
-
-  const handleWishList = (id: string, name: string) => {
-    const index = wishList.findIndex((element) => id === element.id);
-    if (index !== -1) {
-      setWishList([...wishList.slice(0, index), ...wishList.slice(index + 1)]);
-      setIsSelected(false);
-    } else {
-      setWishList((prevList) => [...prevList, { id, name }]);
-      setIsSelected(true);
-    }
-  };
-
-  return (
-    <Wrapper>
-      <Link href={`/${props.id}`}>
-        <TitleWrapper>
-          <CoinImage icon={faCoins} />
-          <CoinName>{name}</CoinName>
-        </TitleWrapper>
-      </Link>
-      <CoinHeart
-        icon={faHeart}
-        selected={isSelected}
-        onClick={() => handleWishList(id, name)}
-      />
-    </Wrapper>
-  );
-};
-
-export default CoinItem;

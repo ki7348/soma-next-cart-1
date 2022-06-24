@@ -2,8 +2,8 @@ import { NextPage } from "next";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import CoinItem from "../components/Coin/CoinItem";
-import { wishListState } from "../stores/wish";
-import { IWishList } from "../types/Wish";
+import { cartListState } from "../stores/cart";
+import { ICartList } from "../types/Cart";
 
 const Wrapper = styled.div`
   margin: auto;
@@ -16,24 +16,24 @@ const Title = styled.h1`
   ${({ theme }) => theme.mixin.flexCenter()};
 `;
 
-const WishList: NextPage = () => {
-  const wishList = useRecoilValue(wishListState);
+const CartList: NextPage = () => {
+  const cartList = useRecoilValue(cartListState);
 
-  if (wishList.length === 0) {
+  if (cartList.length === 0) {
     return (
       <Wrapper>
-        <Title>찜 목록이 비었습니다.</Title>
+        <Title>장바구니가 비었습니다.</Title>
       </Wrapper>
     );
   }
   return (
     <Wrapper>
-      <Title>내 찜 목록</Title>
-      {wishList.map((wish: IWishList) => {
-        return <CoinItem key={wish.id} id={wish.id} name={wish.name} />;
+      <Title>내 장바구니</Title>
+      {cartList.map((cart: ICartList) => {
+        return <CoinItem key={cart.id} id={cart.id} name={cart.name} />;
       })}
     </Wrapper>
   );
 };
 
-export default WishList;
+export default CartList;

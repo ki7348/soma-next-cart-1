@@ -11,6 +11,7 @@ import CoinChart from "../components/Coin/CoinChart";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import { NextPage } from "next";
 import { queryKeys } from "../react-query/constants";
+import CartOption from "../components/Cart/CartOption";
 
 type CoinDetailPageProps = {
   coin: string;
@@ -18,6 +19,7 @@ type CoinDetailPageProps = {
 
 const CoinDetailPage: NextPage<CoinDetailPageProps> = ({ coin }) => {
   const [selectedMenu, setSelectedMenu] = useState<string>("");
+  const [coinQuantity, setCoinQuantity] = useState<string>("1");
 
   const { data: coinInfo } = useQuery<ICoinInfo>(queryKeys.coinInfo, () =>
     fetchInfo(coin)
@@ -108,6 +110,7 @@ const CoinDetailPage: NextPage<CoinDetailPageProps> = ({ coin }) => {
         </HiddenDetailWrapper>
       )}
       {selectedMenu === "CHART" && <CoinChart coinId={coinInfo.id} />}
+      <CartOption quantity={coinQuantity} setQuantity={setCoinQuantity} />
     </Container>
   );
 };
