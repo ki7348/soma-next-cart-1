@@ -40,33 +40,33 @@ const CoinDetailPage: NextPage<CoinDetailPageProps> = ({ coin }) => {
             <HomeImage icon={faHome} />
           </a>
         </Link>
-        <Title>{coinInfo?.name}</Title>
+        <Title>{coinInfo.name}</Title>
       </Header>
       <DetailWrapper>
         <DetailStyle>
           <DetailTitle>RANK</DetailTitle>
-          <DetailContent>{coinInfo?.rank}</DetailContent>
+          <DetailContent>{coinInfo.rank}</DetailContent>
         </DetailStyle>
         <DetailStyle>
           <DetailTitle>SYMBOL</DetailTitle>
-          <DetailContent>{coinInfo?.symbol}</DetailContent>
+          <DetailContent>{coinInfo.symbol}</DetailContent>
         </DetailStyle>
         <DetailStyle>
           <DetailTitle>PRICE</DetailTitle>
           <DetailContent>
-            {"$" + coinTickers?.quotes.USD.price.toFixed(3)}
+            {"$" + coinTickers.quotes.USD.price.toFixed(3)}
           </DetailContent>
         </DetailStyle>
       </DetailWrapper>
-      <Description>{coinInfo?.description}</Description>
+      <Description>{coinInfo.description}</Description>
       <DetailWrapper>
         <DetailStyle>
           <DetailTitle>TOTAL SUPPLY</DetailTitle>
-          <DetailContent>{coinTickers?.total_supply}</DetailContent>
+          <DetailContent>{coinTickers.total_supply}</DetailContent>
         </DetailStyle>
         <DetailStyle>
           <DetailTitle>MAX SUPPLY</DetailTitle>
-          <DetailContent>{coinTickers?.max_supply}</DetailContent>
+          <DetailContent>{coinTickers.max_supply}</DetailContent>
         </DetailStyle>
       </DetailWrapper>
       <ButtonWrapper>
@@ -110,7 +110,12 @@ const CoinDetailPage: NextPage<CoinDetailPageProps> = ({ coin }) => {
         </HiddenDetailWrapper>
       )}
       {selectedMenu === "CHART" && <CoinChart coinId={coinInfo.id} />}
-      <CartOption quantity={coinQuantity} setQuantity={setCoinQuantity} />
+      <CartOption
+        id={coinInfo.id}
+        name={coinInfo.name}
+        quantity={coinQuantity}
+        setQuantity={setCoinQuantity}
+      />
     </Container>
   );
 };

@@ -1,16 +1,21 @@
 import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ChangeEvent, Dispatch, SetStateAction, useEffect } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { cartListState } from "../../stores/cart";
 import Button from "../UI/Button";
 
 type CartOptionProps = {
+  id: string;
   quantity: string;
+  name: string;
   setQuantity: Dispatch<SetStateAction<string>>;
 };
 
 const CartOption = (props: CartOptionProps) => {
-  const { quantity, setQuantity } = props;
+  const { quantity, setQuantity, id, name } = props;
+  const [cartList, setCartList] = useRecoilState(cartListState);
 
   useEffect(() => {
     if (quantity.length > 0 && +quantity < 1) {
@@ -21,6 +26,19 @@ const CartOption = (props: CartOptionProps) => {
       return;
     }
   }, [quantity, setQuantity]);
+
+  const handlePutCart = (id: string, name: string) => {
+    const index = cartList.findIndex((element) => id === element.id);
+    if (index !== -1) {
+      setCartList([
+        ...cartList.slice(0, index),
+        { id, count: cartList[index].count + +quantity, name },
+        ...cartList.slice(index + 1),
+      ]);
+    } else {
+      setCartList([...cartList, { id, count: +quantity, name }]);
+    }
+  };
 
   return (
     <Wrapper>
@@ -45,6 +63,7 @@ const CartOption = (props: CartOptionProps) => {
         backgroundColor="#5F7161"
         height="26px"
         width="235px"
+        onClick={() => handlePutCart(id, name)}
       >
         <ButtonText>장바구니 담기</ButtonText>
       </Button>

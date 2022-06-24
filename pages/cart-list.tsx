@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import CoinItem from "../components/Coin/CoinItem";
+import CartItem from "../components/Cart/CartItem";
 import { cartListState } from "../stores/cart";
 import { ICartList } from "../types/Cart";
 
@@ -30,7 +30,14 @@ const CartList: NextPage = () => {
     <Wrapper>
       <Title>내 장바구니</Title>
       {cartList.map((cart: ICartList) => {
-        return <CoinItem key={cart.id} id={cart.id} name={cart.name} />;
+        return (
+          <CartItem
+            key={cart.id}
+            id={cart.id}
+            name={cart.name}
+            count={cart.count}
+          />
+        );
       })}
     </Wrapper>
   );
